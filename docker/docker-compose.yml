@@ -1,0 +1,40 @@
+version: "3.3"
+
+services:
+  nginx:
+    build: ./nginx
+    ports:
+      - "8098:8080"
+    volumes:
+      - ../app:/var/www/html
+    networks:
+      - my-network
+
+  php:
+    build:
+      context: .
+      dockerfile: ./php-fpm/Dockerfile
+    volumes:
+      - "../app:/var/www/html"
+    networks:
+      - my-network
+
+  postgres:
+    build: ./postgres
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - 5432:5432
+    networks:
+      - my-network
+
+networks:
+  my-network:
+    driver: bridge
+
+volumes:
+  db-data:

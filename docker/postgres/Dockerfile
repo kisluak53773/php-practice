@@ -1,0 +1,6 @@
+FROM postgres:12.19-alpine3.19
+
+ENV POSTGRES_PASSWORD=root
+ENV POSTGRES_USER=admin
+
+EXPOSE 5432
