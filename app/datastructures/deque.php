@@ -81,7 +81,7 @@ class Deque
 
     public function isNotEmpty()
     {
-        return isset($this->end) || isset($this->start);
+        return isset($this->end) && isset($this->start);
     }
 }
 
