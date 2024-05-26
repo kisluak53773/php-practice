@@ -5,7 +5,6 @@ namespace Datastructure;
 class Deque
 {
     private $end;
-    private $data;
     private $start;
 
     public function push($data)
