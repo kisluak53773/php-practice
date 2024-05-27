@@ -20,7 +20,8 @@ class Deque
         }
     }
 
-    public function unshift($data){
+    public function unshift($data)
+    {
         if($this->isNotEmpty()) {
             $item = new DequeItem($data);
             $item->setNext($this->start);
@@ -32,48 +33,52 @@ class Deque
         }
     }
 
-    public function getEnd(){
-        if($this->isNotEmpty()){
+    public function getEnd()
+    {
+        if($this->isNotEmpty()) {
             return $this->end->getData();
-        }else{
+        } else {
             return false;
         }
     }
 
-    public function getStart(){
-        if($this->isNotEmpty()){
+    public function getStart()
+    {
+        if($this->isNotEmpty()) {
             return $this->start->getData();
-        }else{
+        } else {
             return false;
         }
     }
 
-    public function pop(){
-        if($this->isNotEmpty() && isset($this->end->getPrevious())){
+    public function pop()
+    {
+        if($this->isNotEmpty() && $this->end->getPrevious() !== null) {
             $data = $this->end->getData();
             $this->end = $this->end->getPrevious();
             return $data;
-        }else if($this->isNotEmpty() && !isset($this->end->getPrevious())){
+        } elseif($this->isNotEmpty() && $this->end->getPrevious() === null) {
             $data = $this->end->getData();
             $this->end = null;
-            $this->start=null;
+            $this->start = null;
             return $data;
-        }else{
+        } else {
             return false;
         }
     }
 
-    public function shift(){
-        if($this->isNotEmpty() && isset($this->end->getNext())){
+    public function shift()
+    {
+        if($this->isNotEmpty() && $this->end->getNext() !== null) {
             $data = $this->start->getData();
             $this->start = $this->start->getNext();
             return $data;
-        }else if($this->isNotEmpty() && !isset($this->end->getNext())){
+        } elseif($this->isNotEmpty() && $this->end->getNext() === null) {
             $data = $this->start->getData();
             $this->end = null;
-            $this->start=null;
+            $this->start = null;
             return $data;
-        }else{
+        } else {
             return false;
         }
     }
@@ -92,7 +97,7 @@ class DequeItem
 
     public function __construct($data)
     {
-        $this->data=$data;
+        $this->data = $data;
     }
 
     public function setNext(DequeItem $item)
@@ -114,8 +119,9 @@ class DequeItem
     {
         return $this->next;
     }
-    
-    public function getData(){
+
+    public function getData()
+    {
         return $this->data;
     }
 }

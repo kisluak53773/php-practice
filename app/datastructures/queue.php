@@ -2,43 +2,48 @@
 
 namespace Datastructure;
 
-class Queue{
+class Queue
+{
     private $queueStart;
     private $queueEnd;
 
-    public function addToQueue($data){
-        if($this->isQueueNotEmpty()){
+    public function addToQueue($data)
+    {
+        if($this->isQueueNotEmpty()) {
             $queueItem = new QueueuItem($data);
             $this->queueEnd->setNext($queueItem);
             $this->queueEnd = $queueItem;
-        }else{
+        } else {
             $queueItem = new QueueuItem($data);
-            $this->queueStart=$queueItem;
-            $this->queueEnd=$queueItem;
+            $this->queueStart = $queueItem;
+            $this->queueEnd = $queueItem;
         }
     }
 
-    public function resolveQueueItem(){
-        if($this->isQueueNotEmpty() && isset($this->queueStart->getNext())){
+    public function resolveQueueItem()
+    {
+        if($this->isQueueNotEmpty() && $this->queueStart->getNext() !== null) {
             $data = $this->queueStart->getData();
             $this->queueStart = $this->queueStart->getNext();
             return $data;
-        }else if($this->isQueueNotEmpty() && !isset($this->queueStart->getNext())){
+        } elseif($this->isQueueNotEmpty() && $this->queueStart->getNext() === null) {
             $data = $this->queueStart->getData();
             $this->queueStart = null;
-            $this->queueEnd= null;
+            $this->queueEnd = null;
             return $data;
-        }else{
+        } else {
             return false;
         }
     }
 
-    public function isQueueNotEmpty(){
+    public function isQueueNotEmpty()
+    {
         return isset($this->queueStart) && isset($this->queueEnd);
     }
 }
 
-class QueueuItem{
+class QueueuItem
+{
     private $data;
     private $next;
 
@@ -47,15 +52,18 @@ class QueueuItem{
         $this->data = $data;
     }
 
-    public function setNext(QueueuItem $item){
-        $this->next=$item;
+    public function setNext(QueueuItem $item)
+    {
+        $this->next = $item;
     }
 
-    public function getData(){
+    public function getData()
+    {
         return $this->data;
     }
 
-    public function getNext(){
+    public function getNext()
+    {
         return $this->next;
     }
 }
