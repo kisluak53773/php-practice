@@ -1,13 +1,12 @@
 <?php
 
-class Solution {
+declare(strict_types=1);
 
-    /**
-     * @param String[] $strs
-     * @return String[][]
-     */
-    function groupAnagrams($strs) {
-        $annagramGroups= [];
+class Solution
+{
+    public function groupAnagrams(array $strs): array
+    {
+        $annagramGroups = [];
         $buffer = [];
         foreach ($strs as $str) {
             $sortedStr = $this->quickSort(str_split($str));
@@ -15,20 +14,20 @@ class Solution {
             $buffer[$key][] = $str;
         }
         foreach ($buffer as $item) {
-            $annagramGroups[]=$item;
+            $annagramGroups[] = $item;
         }
 
         return $annagramGroups;
     }
 
-    public function quickSort($array)
+    public function quickSort(array $array): array
     {
         $length = count($array);
-    
+
         if ($length <= 1) {
             return $array;
         }
-        
+
         $pivot = $array[0];
         $left = $right = [];
 
