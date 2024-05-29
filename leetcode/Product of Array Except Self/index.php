@@ -1,13 +1,10 @@
 <?php 
 
+declare(strict_types=1);
 
 class Solution {
 
-    /**
-     * @param Integer[] $nums
-     * @return Integer[]
-     */
-    function productExceptSelf($nums) {
+    function productExceptSelf(array $nums):array {
         $totalProduct = array_product($nums);
         $answers = [];
 
