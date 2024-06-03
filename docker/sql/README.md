@@ -1,4 +1,6 @@
 #Select SQL
+
+
 SELECT * FROM customers - выборка всех элементов
 
 SELECT contact_name, city FROM customers - выбрать только города и контактные имена и таблицы customers
